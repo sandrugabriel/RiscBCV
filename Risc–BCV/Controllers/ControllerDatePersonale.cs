@@ -41,6 +41,36 @@ namespace Risc_BCV.Controllers
             streamReader.Close();
         }
 
+        public bool verificare(string email,string parola)
+        {
+
+            for(int i = 0; i < datePersonale.Count; i++)
+            {
+                if (datePersonale[i].Email.Equals(email) && datePersonale[i].Parola.Equals(parola))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public DatePersonale getDatePersoanale(string email, string parola)
+        {
+
+            for (int i = 0; i < datePersonale.Count; i++)
+            {
+                if (datePersonale[i].Email.Equals(email) && datePersonale[i].Parola.Equals(parola))
+                {
+                    return datePersonale[i];
+                }
+            }
+
+            return null;
+        }
+
+
+
 
     }
 }
