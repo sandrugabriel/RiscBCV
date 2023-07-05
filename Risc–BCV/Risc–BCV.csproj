@@ -62,8 +62,14 @@
     </Compile>
     <Compile Include="Models\AnalizePacient.cs" />
     <Compile Include="Models\DatePersonale.cs" />
+    <Compile Include="Panels\PnlStart.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mockups\MockupStart.resx">
       <DependentUpon>MockupStart.cs</DependentUpon>
     </EmbeddedResource>
