@@ -17,8 +17,8 @@ namespace Risc_BCV
         {
             InitializeComponent();
 
-            this.Controls.Add(new PnlStart(this));
-
+            this.Controls.Add(new PnlOptiuni(this));
+    
 
         }
 

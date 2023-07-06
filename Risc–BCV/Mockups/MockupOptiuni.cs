@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Risc_BCV.Mockups
 {
-    public partial class MockupStart : Form
+    public partial class MockupOptiuni : Form
     {
-        public MockupStart()
+        public MockupOptiuni()
         {
             InitializeComponent();
         }

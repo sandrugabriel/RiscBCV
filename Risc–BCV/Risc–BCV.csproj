@@ -54,14 +54,17 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mockups\MockupStart.cs">
+    <Compile Include="Mockups\MockupOptiuni.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mockups\MockupStart.Designer.cs">
-      <DependentUpon>MockupStart.cs</DependentUpon>
+    <Compile Include="Mockups\MockupOptiuni.Designer.cs">
+      <DependentUpon>MockupOptiuni.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AnalizePacient.cs" />
     <Compile Include="Models\DatePersonale.cs" />
+    <Compile Include="Panels\PnlOptiuni.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Panels\PnlStart.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -70,8 +73,8 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mockups\MockupStart.resx">
-      <DependentUpon>MockupStart.cs</DependentUpon>
+    <EmbeddedResource Include="Mockups\MockupOptiuni.resx">
+      <DependentUpon>MockupOptiuni.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
