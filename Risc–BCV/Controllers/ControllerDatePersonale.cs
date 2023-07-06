@@ -41,26 +41,12 @@ namespace Risc_BCV.Controllers
             streamReader.Close();
         }
 
-        public bool verificare(string email,string parola)
-        {
-
-            for(int i = 0; i < datePersonale.Count; i++)
-            {
-                if (datePersonale[i].Email.Equals(email) && datePersonale[i].Parola.Equals(parola))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        public DatePersonale getDatePersoanale(string email, string parola)
+        public DatePersonale getClientById(int id)
         {
 
             for (int i = 0; i < datePersonale.Count; i++)
             {
-                if (datePersonale[i].Email.Equals(email) && datePersonale[i].Parola.Equals(parola))
+                if (datePersonale[i].IdPacient == id)
                 {
                     return datePersonale[i];
                 }
@@ -69,7 +55,32 @@ namespace Risc_BCV.Controllers
             return null;
         }
 
+        public int generareId()
+        {
+            Random random = new Random();
 
+            int id = random.Next();
+            while (this.getClientById(id) != null)
+            {
+
+                id = random.Next();
+
+            }
+
+
+            return id;
+
+        }
+
+        public void save(string textul)
+        {
+
+            string text = textul;
+            string path = Application.StartupPath + @"/data/pacienti.txt";
+            File.AppendAllText(path, text + "\n");
+
+
+        }
 
 
     }
