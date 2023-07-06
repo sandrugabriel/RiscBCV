@@ -40,6 +40,36 @@ namespace Risc_BCV.Controllers
             streamReader.Close();
         }
 
+         public AnalizePacient getAnalizeById(int id)
+        {
+
+            for (int i = 0; i < analizePacienti.Count; i++)
+            {
+                if (analizePacienti[i].IdAnaliza == id)
+                {
+                    return analizePacienti[i];
+                }
+            }
+
+            return null;
+        }
+
+        public int generareId()
+        {
+            Random random = new Random();
+
+            int id = random.Next();
+            while (this.getAnalizeById(id) != null)
+            {
+
+                id = random.Next();
+
+            }
+
+
+            return id;
+
+        }
 
 
 

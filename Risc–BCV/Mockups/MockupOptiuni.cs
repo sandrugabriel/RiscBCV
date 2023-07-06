@@ -16,5 +16,6 @@ namespace Risc_BCV.Mockups
         {
             InitializeComponent();
         }
+
     }
 }

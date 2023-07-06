@@ -13,18 +13,16 @@ namespace Risc_BCV.Models
 
         private int _idPacient;
         private string _nume;
-        private string _parola;
         private string _prenume;
         private bool _gen;
         private int _varsta;
         private DateTime _dateNasterii;
         private string _email;
 
-        public DatePersonale(int idPacient, string nume,string parola, string prenume, bool gen, int varsta, DateTime dateNasterii, string email)
+        public DatePersonale(int idPacient, string nume,string prenume, bool gen, int varsta, DateTime dateNasterii, string email)
         {
             _idPacient = idPacient;
             _nume = nume;
-            _parola = parola;
             _prenume = prenume;
             _gen = gen;
             _varsta = varsta;
@@ -38,12 +36,11 @@ namespace Risc_BCV.Models
 
             this._idPacient = int.Parse(prop[0]);
             this._nume = prop[1];
-            this._parola = prop[2];
-            this._prenume = prop[3];
-            this._gen = bool.Parse(prop[4]);
-            this._varsta = int.Parse(prop[5]);
-            this._dateNasterii = DateTime.Parse(prop[6]);
-            this._email = prop[7];
+            this._prenume = prop[2];
+            this._gen = bool.Parse(prop[3]);
+            this._varsta = int.Parse(prop[4]);
+            this._dateNasterii = DateTime.Parse(prop[5]);
+            this._email = prop[6];
 
         }
 
@@ -58,12 +55,6 @@ namespace Risc_BCV.Models
         {
             get { return _nume; }
             set { _nume = value; }
-        }
-
-        public string Parola
-        {
-            get { return _parola; }
-            set { _parola = value; }
         }
 
         public string Prenume
