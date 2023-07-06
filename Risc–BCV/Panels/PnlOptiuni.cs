@@ -37,6 +37,7 @@ namespace Risc_BCV.Panels
         public PnlOptiuni(Form1 form1)
         {
             this.form = form1;
+            this.form.Location = new System.Drawing.Point(1, 1);
             this.form.Size = new System.Drawing.Size(1366, 705);
             this.form.MinimumSize = new System.Drawing.Size(1366, 705);
             this.form.MaximumSize = new System.Drawing.Size(1366, 705);
