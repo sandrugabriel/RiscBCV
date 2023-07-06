@@ -124,7 +124,7 @@ namespace Risc_BCV.Panels
                 if (txtEmail.Text.Equals("medic") && txtParola.Text.Equals("oti2014"))
                 {
                     this.form.removePnl("PnlStart");
-
+                    this.form.Controls.Add(new PnlOptiuni(form));
                 }
                 else
                 {
