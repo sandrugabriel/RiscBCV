@@ -111,6 +111,13 @@ namespace Risc_BCV.Controllers
 
         }
 
-
+        public int getIdbyNume(string nume)
+        {
+            for(int i=0;i<datePersonale.Count;i++)
+            {
+                if (nume.Equals(datePersonale[i].Nume)) return datePersonale[i].IdPacient;
+            }
+            return -1;
+        }
     }
 }

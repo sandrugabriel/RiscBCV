@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Risc_BCV.Panels
 {
@@ -37,7 +39,6 @@ namespace Risc_BCV.Panels
         ControllerAnalizePacienti controllerAnalizePacienti;
 
         List<string> errors;
-
         private System.Windows.Forms.TextBox txtCod;
         private System.Windows.Forms.Label lblCod;
         private System.Windows.Forms.TextBox txtNume;
@@ -74,10 +75,21 @@ namespace Risc_BCV.Panels
 
         List<DatePersonale> listPacientii;
         int i;
+
+
+        private System.Windows.Forms.Label lblTitlu;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart;
+        private System.Windows.Forms.ComboBox comboPacienti;
+        ChartArea chartArea;
+        Legend legend;
+        Series series;
+        List<AnalizePacient> listAnalize;
+
         public PnlOptiuni(Form1 form1)
         {
             this.form = form1;
             errors = new List<string>();
+            listAnalize = new List<AnalizePacient>();
             this.form.Location = new System.Drawing.Point(1, 1);
             this.form.Size = new System.Drawing.Size(1366, 705);
             this.form.MinimumSize = new System.Drawing.Size(1366, 705);
@@ -601,6 +613,78 @@ namespace Risc_BCV.Panels
             this.btnAdd.Click += new EventHandler(btnAdd_Click);
             this.tabControl.SelectedIndex = 1;
             load();
+            chart = new Chart();
+            chartArea = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            legend = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            series = new System.Windows.Forms.DataVisualization.Charting.Series();
+            lblTitlu = new Label();
+            comboPacienti = new System.Windows.Forms.ComboBox();
+            this.tabGrafic.Controls.Add(lblTitlu);
+            this.tabGrafic.Controls.Add(chart);
+            this.tabGrafic.Controls.Add(comboPacienti);
+
+            // lblTitlu
+            this.lblTitlu.AutoSize = true;
+            this.lblTitlu.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 17.8F);
+            this.lblTitlu.Location = new System.Drawing.Point(150, 49);
+            this.lblTitlu.Size = new System.Drawing.Size(122, 39);
+            this.lblTitlu.Text = "Pacienti";
+
+            // comboPacienti
+            this.comboPacienti.FormattingEnabled = true;
+            this.comboPacienti.Location = new System.Drawing.Point(94, 112);
+            this.comboPacienti.Size = new System.Drawing.Size(223, 38);
+            this.comboPacienti.SelectedIndexChanged += new EventHandler(comboBox_SelectedIndexChanged);
+
+            for(int i=0;i<listPacientii.Count;i++)
+                comboPacienti.Items.Add(listPacientii[i].Nume);
+
+
+            this.chart.Size = new System.Drawing.Size(812, 525);
+            this.chart.Location = new System.Drawing.Point(446, 70);
+            this.chart.Legends.Add(legend);
+            this.chart.Name = "chart";
+            this.chart.Text = "chart";
+            this.chart.Series.Add(series);
+            this.chart.ChartAreas.Add(chartArea);
+            this.chart.Series.Add(series1);
+
+            this.chartArea.Name = "ChartArea";
+            this.legend.Name = "Legend";
+            this.series.ChartType = SeriesChartType.Column;
+            this.tabGrafic.BackColor = System.Drawing.ColorTranslator.FromHtml("#2E3239");
+        }
+
+        private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string nume = comboPacienti.SelectedItem.ToString();
+            int id = controllerDatePersonale.getIdbyNume(nume);
+
+            styleOne(id);
+        }
+
+            Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+        private void styleOne(int id)
+        {
+
+            listAnalize = controllerAnalizePacienti.getAnalizePacint(id);
+            this.series.Points.Clear();
+            this.series1.Points.Clear();
+            for (int i = 0; i < listAnalize.Count; i++)
+            {
+                DataPoint dataPoint = new DataPoint(0, listAnalize[i].ColesterolTotal);
+                dataPoint.Label = "ColesterolTotal";
+                this.series.Points.Add(dataPoint);
+
+
+                DataPoint dataPoint1 = new DataPoint(0, listAnalize[i].HDL);
+                dataPoint1.Label = "ColesterolTotal";
+                this.series1.Points.Add(dataPoint1);
+
+                this.series1.Color = Color.LightGreen;
+            }
+            this.series.Name = "ColesterolTotal";
+            this.series1.Name = "HDL";
         }
 
         public void btnSalvare_Click(object sender, EventArgs e)
@@ -909,7 +993,7 @@ namespace Risc_BCV.Panels
 
             verificare();
 
-            if(errors.Count == 0)
+            if (errors.Count == 0)
             {
                 int idAnaliza = controllerAnalizePacienti.getIdAnalize(int.Parse(txtCod.Text), dataAnaliza.SelectionEnd.ToString("dd.MM.yyyy"));
                 string data = dataAnaliza.SelectionEnd.ToString("dd.MM.yyyy");
@@ -920,16 +1004,16 @@ namespace Risc_BCV.Panels
                 string b = "false";
                 string fum = "false";
 
-                if(chk60Ani.Checked)
+                if (chk60Ani.Checked)
                 {
                     b = "true";
                 }
-                if(chkFumator.Checked)
+                if (chkFumator.Checked)
                 {
                     fum = "true";
                 }
 
-                controllerAnalizePacienti.setAnaliza(idAnaliza,data,co,hpl,tas,p,b,fum);
+                controllerAnalizePacienti.setAnaliza(idAnaliza, data, co, hpl, tas, p, b, fum);
                 controllerAnalizePacienti.update();
 
 
@@ -958,5 +1042,9 @@ namespace Risc_BCV.Panels
 
 
         }
+
+
+
+
     }
 }
