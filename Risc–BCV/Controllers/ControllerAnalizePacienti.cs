@@ -54,6 +54,21 @@ namespace Risc_BCV.Controllers
             return null;
         }
 
+        public List<AnalizePacient> getAnalizePacint(int idPacient)
+        {
+            List<AnalizePacient> list = new List<AnalizePacient>();
+
+            for(int i = 0; i < analizePacienti.Count; i++)
+            {
+                if(idPacient == analizePacienti[i].IdPacient)
+                {
+                    list.Add(analizePacienti[i]);
+                }
+            }
+
+            return list;
+        }
+
         public int generareId()
         {
             Random random = new Random();
