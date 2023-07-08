@@ -82,6 +82,35 @@ namespace Risc_BCV.Controllers
 
         }
 
+        public List<DatePersonale> getPacienti()
+        {
+            return datePersonale;
+        }
+
+        public void crescator(List<DatePersonale> list)
+        {
+
+            int semn = 0;
+
+            do
+            {
+                semn = 1;
+
+                for (int i = 0; i < list.Count - 1; i++)
+                {
+                    if (string.Compare(list[i].Nume, list[i + 1].Nume) > 0)
+                    {
+                        DatePersonale datePersonale = list[i];
+                        list[i] = list[i + 1];
+                        list[i + 1] = datePersonale;
+                        semn = 0;
+                    }
+                }
+            } while (semn == 0);
+
+
+        }
+
 
     }
 }

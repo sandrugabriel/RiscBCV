@@ -16,11 +16,11 @@ namespace Risc_BCV.Models
         private int _ColesterolTotal;
         private int _HDL;
         private int _TAS;
-        private int _PCR;
+        private double _PCR;
         private bool _BCVF;
         private bool _Fumator;
 
-        public AnalizePacient(int idAnaliza, int idPacient, DateTime dataAnalize, int colesterolTotal, int hDL, int tAS, int pCR, bool bCVF, bool fumator)
+        public AnalizePacient(int idAnaliza, int idPacient, DateTime dataAnalize, int colesterolTotal, int hDL, int tAS, double pCR, bool bCVF, bool fumator)
         {
             _IdAnaliza = idAnaliza;
             _IdPacient = idPacient;
@@ -43,7 +43,7 @@ namespace Risc_BCV.Models
             this._ColesterolTotal = int.Parse(prop[3]);
             this._HDL = int.Parse(prop[4]);
             this._TAS = int.Parse(prop[5]);
-            this._PCR = int.Parse(prop[6]);
+            this._PCR = double.Parse(prop[6]);
             this._BCVF = bool.Parse(prop[7]);
             this._Fumator = bool.Parse(prop[8]);
         
@@ -86,7 +86,7 @@ namespace Risc_BCV.Models
             set { _TAS = value;}
         }
 
-        public int PCR
+        public double PCR
         {
             get { return _PCR; }
             set { _PCR = value;}
@@ -104,5 +104,9 @@ namespace Risc_BCV.Models
             set { _Fumator = value;}
         }
 
+        public string toSave()
+        {
+            return IdAnaliza.ToString() + "|" + IdPacient.ToString() + "|" + DateAnalize.ToString("dd.MM.yyyy") + "|" + ColesterolTotal.ToString() +"|" + HDL.ToString() + "|" + TAS.ToString() + "|" + PCR.ToString("0.###") + "|" + BCVF.ToString() + "|" + Fumator.ToString();
+        }
     }
 }

@@ -17,5 +17,9 @@ namespace Risc_BCV.Mockups
             InitializeComponent();
         }
 
+        private void dataAnaliza_DateChanged(object sender, DateRangeEventArgs e)
+        {
+
+        }
     }
 }
